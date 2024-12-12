@@ -54,27 +54,35 @@ Resources:
           Fn::Base64: !Sub |
             #!/bin/bash
             set -e
-            # Log storage path
             LOG_FILE="/var/log/userdata.log"
             exec > >(tee -a $LOG_FILE | logger -t userdata) 2>&1
             echo "Starting UserData script..."
+            
+            # Install AWS CLI
+            echo "Installing AWS CLI..."
+            apt-get update -y && apt-get install -y awscli
+            
             # Update and install NGINX
             echo "Updating package list and installing nginx..."
-            apt-get update -y && apt-get install -y nginx
+            apt-get install -y nginx
+            
             # Start nginx service
             echo "Starting nginx service..."
             service nginx start
+            
             # Move to web folder
             echo "Changing to /var/www/html..."
             cd /var/www/html || { echo "Failed to change directory"; exit 1; }
+            
             # Download files from S3
             echo "Copying index.html from S3 bucket..."
             if aws s3 cp s3://launchtemplate-upload-s3/index.html .; then
-            echo "S3 copy successful!"
+                echo "S3 copy successful!"
             else
-            echo "S3 copy failed!"
-            exit 1
+                echo "S3 copy failed!"
+                exit 1
             fi
+            
             # Restart nginx
             echo "Restarting nginx service..."
             service nginx restart
@@ -112,7 +120,7 @@ Resources:
                 Action:
                   - 's3:GetObject'
                 Resource:
-                  - !Sub "arn:aws:s3:::any-bucket-name/*"
+                  - !Sub "arn:aws:s3:::launchtemplate-upload-s3/*"
 
   WebAppInstanceProfile:
     Type: AWS::IAM::InstanceProfile
@@ -183,3 +191,13 @@ Resources:
       VpcId:
         Fn::ImportValue:
           Fn::Sub: "${EnvironmentName}-VPCID"
+Outputs:
+  WebAppLBDNSName:
+    Description: Public endpoint DNS name
+    Value:
+      Fn::Join:
+        - ""
+        - - "http://"
+          - !GetAtt WebAppLB.DNSName
+    Export:
+      Name: !Sub "${EnvironmentName}-LB-DNSName"
