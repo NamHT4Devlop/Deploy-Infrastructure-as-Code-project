@@ -74,8 +74,12 @@ Resources:
             echo "Changing to /var/www/html..."
             cd /var/www/html || { echo "Failed to change directory"; exit 1; }
             
-            # Download files from S3
-            echo "Copying index.html from S3 bucket..."
+            # Remove default nginx index.html
+            echo "Removing default nginx index.html..."
+            rm -f index.html
+            
+            # Download custom index.html from S3
+            echo "Copying custom index.html from S3 bucket..."
             if aws s3 cp s3://launchtemplate-upload-s3/index.html .; then
                 echo "S3 copy successful!"
             else
