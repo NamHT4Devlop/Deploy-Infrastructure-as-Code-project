@@ -16,7 +16,7 @@
 
 ## Other considerations
 1. URL diagram: [https://drive.google.com/file/d/1YokdVmS1Qmb2Pc-MZI0BnSzpiMimKmsW/view?usp=sharing](https://drive.google.com/file/d/1YokdVmS1Qmb2Pc-MZI0BnSzpiMimKmsW/view?usp=sharing)
-2. URL LOADBALANCE: NamHT4-WebAp-aARVKAcTvYMJ-1287561352.us-east-1.elb.amazonaws.com
-3. URL HOST: http://namht4-webap-aarvkactvymj-1287561352.us-east-1.elb.amazonaws.com/
+2. URL LOADBALANCE: NamHT4-WebAp-q8HvdvkGYy8V-216777811.us-east-1.elb.amazonaws.com
+3. URL HOST: http://namht4-webap-q8hvdvkgyy8v-216777811.us-east-1.elb.amazonaws.com/
 
 TODO (optional)
