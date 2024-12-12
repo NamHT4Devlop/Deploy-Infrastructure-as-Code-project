@@ -1,13 +1,22 @@
 # CD12352 - Infrastructure as Code Project Solution
-# [YOUR NAME HERE]
+# [HO TRUNG NAM - NAMHT4]
 
 ## Spin up instructions
-TODO
+
+## OPEN TERMINAL: RUN `cd starter/`
+
+## CREATE NETWORK: `./create-network.sh network.yml network-parameters.json`
+
+## CREATE UDAGRAM SERVER: `./create-udagram.sh udagram.yml udagram-parameters.json`
 
 ## Tear down instructions
-TODO
+## UPDATE NETWORK: `./update-network.sh network.yml network-parameters.json`
+
+## UPDATE UDAGRAM SERVER: `./update-udagram.sh udagram.yml udagram-parameters.json`
 
 ## Other considerations
 1. URL diagram: [https://drive.google.com/file/d/1YokdVmS1Qmb2Pc-MZI0BnSzpiMimKmsW/view?usp=sharing](https://drive.google.com/file/d/1YokdVmS1Qmb2Pc-MZI0BnSzpiMimKmsW/view?usp=sharing)
+2. URL LOADBALANCE: NamHT4-WebAp-aARVKAcTvYMJ-1287561352.us-east-1.elb.amazonaws.com
+3. URL HOST: http://namht4-webap-aarvkactvymj-1287561352.us-east-1.elb.amazonaws.com/
 
 TODO (optional)
